@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Base64;
 import android.util.Patterns;
 import android.view.View;
@@ -15,14 +16,19 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.chat_app.databinding.ActivitySignUpBinding;
+import com.example.chat_app.utilities.Contants;
+import com.example.chat_app.utilities.PreferenceManager;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.util.HashMap;
 
 public class SignUpActivity extends AppCompatActivity {
 
     private ActivitySignUpBinding binding;
+    private PreferenceManager preferenceManager;
     private String encodedImages;
 
     @Override
@@ -30,12 +36,22 @@ public class SignUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivitySignUpBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        preferenceManager = new PreferenceManager(getApplicationContext());
         setListeners();
     }
 
     private void setListeners(){
         binding.textSignIn.setOnClickListener(v -> onBackPressed());
-
+        binding.buttonSignUp.setOnClickListener(v ->{
+            if(isValidSignUpDetails()){
+                signUp();
+            }
+        });
+        binding.layoutImage.setOnClickListener(v -> {
+            Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+            intent.addFlags(Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION);
+            pickImage.launch(intent);
+        });
     }
     private void showToast(String message){
         Toast.makeText(getApplicationContext(),message, Toast.LENGTH_SHORT).show();
@@ -47,10 +63,32 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     private void signUp(){
-
+        loading(true);
+        FirebaseFirestore database = FirebaseFirestore.getInstance();
+        HashMap<String,Object> user = new HashMap<>();
+        user.put(Contants.KEY_NAME,binding.inputName.getText().toString());
+        user.put(Contants.KEY_EMAIL,binding.inputEmail.getText().toString());
+        user.put(Contants.KEY_PASSWORD,binding.inputPassword.getText().toString());
+        user.put(Contants.KEY_IMAGE,encodedImages);
+        database.collection(Contants.KEY_COLLECTION_USERS)
+                .add(user)
+                .addOnSuccessListener(documentReference -> {
+                    loading(false );
+                    preferenceManager.putBoolean(Contants.KEY_IS_SIGNED_IN,true);
+                    preferenceManager.putString(Contants.KEY_USER_ID,documentReference.getId());
+                    preferenceManager.putString(Contants.KEY_NAME,binding.inputName.getText().toString());
+                    preferenceManager.putString(Contants.KEY_IMAGE,encodedImages);
+                    Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
+                })
+                .addOnFailureListener(exception ->{
+                    loading(false);
+                    showToast(exception.getMessage());
+                });
     }
 
-    private String getEncodedImages(Bitmap bitmap){
+    private String encodeImages(Bitmap bitmap){
         int previewWidth = 150;
         int previewHeight = bitmap.getHeight() * previewWidth / bitmap.getWidth();
         Bitmap previewBitmap = Bitmap.createScaledBitmap(bitmap, previewWidth, previewHeight, false);
