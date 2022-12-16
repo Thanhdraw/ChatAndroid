@@ -65,6 +65,7 @@
             android:textColor="@color/primary_text"
             android:textSize="@dimen/_13ssp"/>
 
+
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -80,6 +81,7 @@
                 android:textSize="@dimen/_13ssp"
                 android:textStyle="bold"
                 app:cornerRadius="@dimen/_8sdp" />
+
 
             <ProgressBar
                 android:id="@+id/progressBar"
