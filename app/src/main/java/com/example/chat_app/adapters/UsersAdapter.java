@@ -15,7 +15,7 @@ import com.example.chat_app.models.User;
 
 import java.util.List;
 
-public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserViewHoder> {
+public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserViewHolder> {
 
     private final List<User> users;
     private final UserListener userListener;
@@ -27,17 +27,17 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserViewHode
 
     @NonNull
     @Override
-    public UserViewHoder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public UserViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         ItemContainerUserBinding itemContainerUserBinding = ItemContainerUserBinding.inflate(
                 LayoutInflater.from(parent.getContext()),
                 parent,
                 false
         );
-        return new UserViewHoder(itemContainerUserBinding);
+        return new UserViewHolder(itemContainerUserBinding);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull UserViewHoder holder, int position) {
+    public void onBindViewHolder(@NonNull UserViewHolder holder, int position) {
         holder.setUserData(users.get(position));
 
     }
@@ -47,11 +47,11 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserViewHode
         return users.size();
     }
 
-    class UserViewHoder extends RecyclerView.ViewHolder{
+    class UserViewHolder extends RecyclerView.ViewHolder{
 
         ItemContainerUserBinding binding;
 
-        UserViewHoder(ItemContainerUserBinding itemContainerUserBinding){
+        UserViewHolder(ItemContainerUserBinding itemContainerUserBinding){
             super(itemContainerUserBinding.getRoot());
             binding = itemContainerUserBinding;
         }
