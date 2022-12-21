@@ -7,11 +7,16 @@
         <deviceKey>
           <Key>
             <type value="VIRTUAL_DEVICE_PATH" />
+<<<<<<< HEAD
             <value value="C:\Users\namth\.android\avd\Pixel_5_API_31.avd" />
+=======
+            <value value="$USER_HOME$/.android/avd/Pixel_3a_API_33_arm64-v8a.avd" />
+>>>>>>> 93c99d6 (Đang làm bài 8, bị lỗi (6:03s))
           </Key>
         </deviceKey>
       </Target>
     </targetSelectedWithDropDown>
+<<<<<<< HEAD
     <timeTargetWasSelectedWithDropDown value="2022-12-20T22:45:07.290346300Z" />
     <runningDeviceTargetsSelectedWithDialog>
       <Target>
@@ -35,5 +40,8 @@
         </deviceKey>
       </Target>
     </targetsSelectedWithDialog>
+=======
+    <timeTargetWasSelectedWithDropDown value="2022-12-19T17:00:08.253412Z" />
+>>>>>>> 93c99d6 (Đang làm bài 8, bị lỗi (6:03s))
   </component>
 </project>
