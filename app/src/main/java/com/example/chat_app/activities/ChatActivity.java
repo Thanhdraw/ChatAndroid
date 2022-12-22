@@ -73,6 +73,20 @@ public class ChatActivity extends AppCompatActivity {
         message.put(Contants.KEY_MESSAGE, binding.inputMessage.getText().toString());
         message.put(Contants.KEY_TIMESTAMP, new Date());
         database.collection(Contants.KEY_COLLECTION_CHAT).add(message);
+        if (conversationId != null){
+            updateConversion(binding.inputMessage.getText().toString());
+        }else{
+            HashMap<String, Object> conversion = new HashMap<>();
+            conversion.put(Contants.KEY_SENDER_ID,preferenceManager.getString(Contants.KEY_USER_ID));
+            conversion.put(Contants.KEY_SENDER_NAME,preferenceManager.getString(Contants.KEY_NAME));
+            conversion.put(Contants.KEY_SENDER_IMAGE,preferenceManager.getString(Contants.KEY_IMAGE));
+            conversion.put(Contants.KEY_RECEIVER_ID,receiverUser.id);
+            conversion.put(Contants.KEY_RECEIVER_NAME,receiverUser.name);
+            conversion.put(Contants.KEY_RECEIVER_IMAGE,receiverUser.image);
+            conversion.put(Contants.KEY_LAST_MESSAGE, binding.inputMessage.getText().toString());
+            conversion.put(Contants.KEY_TIMESTAMP, new Date());
+            addConversion(conversion);
+        }
         binding.inputMessage.setText(null);
     }
 

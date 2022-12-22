@@ -1,30 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="deploymentTargetDropDown">
-    <targetSelectedWithDropDown>
+    <runningDeviceTargetSelectedWithDropDown>
       <Target>
-        <type value="QUICK_BOOT_TARGET" />
+        <type value="RUNNING_DEVICE_TARGET" />
         <deviceKey>
           <Key>
             <type value="VIRTUAL_DEVICE_PATH" />
-<<<<<<< HEAD
-            <value value="C:\Users\namth\.android\avd\Pixel_5_API_31.avd" />
-=======
-            <value value="$USER_HOME$/.android/avd/Pixel_3a_API_33_arm64-v8a.avd" />
->>>>>>> 93c99d6 (Đang làm bài 8, bị lỗi (6:03s))
+            <value value="$USER_HOME$/.android/avd/Copy_of_Pixel_3a_API_33_arm64-v8a.avd" />
           </Key>
         </deviceKey>
       </Target>
-    </targetSelectedWithDropDown>
-<<<<<<< HEAD
-    <timeTargetWasSelectedWithDropDown value="2022-12-20T22:45:07.290346300Z" />
+    </runningDeviceTargetSelectedWithDropDown>
+    <timeTargetWasSelectedWithDropDown value="2022-12-22T08:30:42.760074Z" />
+    <multipleDevicesSelectedInDropDown value="true" />
     <runningDeviceTargetsSelectedWithDialog>
       <Target>
         <type value="RUNNING_DEVICE_TARGET" />
         <deviceKey>
           <Key>
             <type value="VIRTUAL_DEVICE_PATH" />
-            <value value="C:\Users\namth\.android\avd\Pixel_4_XL_API_31.avd" />
+            <value value="$USER_HOME$/.android/avd/Copy_of_Pixel_3a_API_33_arm64-v8a.avd" />
+          </Key>
+        </deviceKey>
+      </Target>
+      <Target>
+        <type value="RUNNING_DEVICE_TARGET" />
+        <deviceKey>
+          <Key>
+            <type value="VIRTUAL_DEVICE_PATH" />
+            <value value="$USER_HOME$/.android/avd/Pixel_4a_API_33.avd" />
           </Key>
         </deviceKey>
       </Target>
@@ -35,13 +40,10 @@
         <deviceKey>
           <Key>
             <type value="VIRTUAL_DEVICE_PATH" />
-            <value value="C:\Users\namth\.android\avd\Pixel_4_XL_API_31_2.avd" />
+            <value value="$USER_HOME$/.android/avd/Copy_of_Pixel_3a_API_33_arm64-v8a.avd" />
           </Key>
         </deviceKey>
       </Target>
     </targetsSelectedWithDialog>
-=======
-    <timeTargetWasSelectedWithDropDown value="2022-12-19T17:00:08.253412Z" />
->>>>>>> 93c99d6 (Đang làm bài 8, bị lỗi (6:03s))
   </component>
 </project>
