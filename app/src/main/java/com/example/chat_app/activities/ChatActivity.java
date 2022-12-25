@@ -106,7 +106,7 @@ public class ChatActivity extends BaseActivity {
                 }
             }
             if (isReceiverAvailable){
-                binding.textAvailability.setText(View.VISIBLE);
+                binding.textAvailability.setVisibility(View.VISIBLE);
 
             }else {
                 binding.textAvailability.setVisibility(View.GONE);
